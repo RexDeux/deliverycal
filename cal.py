@@ -1,15 +1,15 @@
-#from .models import City
-#from .forms import CityForm
 import math
 from datetime import datetime, time
 import calendar
 import json
-from flask import Flask, json, render_template, request, jsonify
+from flask import Flask, json, render_template, jsonify, request
+
+#from flask_restful import Resource
 
 t = time()
 
 
-class Calculations:
+class Calculations():
     def calc(param):
         with open('app.json') as f:
             d = json.load(f)
@@ -42,21 +42,41 @@ class Calculations:
                 delivery_fee = delivery_fee
             elif delivery_fee > 15:
                 delivery_fee = 15
-            break
-
             return delivery_fee
 
 
-app = Flask(__name__)
-app.config["DEBUG"] = True
+    app = Flask(__name__)
+    app.config["DEBUG"] = True
 
 
-@app.route('/cal', methods=['GET', 'POST'])
-def calc():
-    param = request.json
-    result = Calculations.calc(param)
+    @app.route('/cal', methods=['GET'])
+    def get(self):
+        return jsonify({'message': print(d)})
 
-    return {"result": result}
+    @app.route('/cal', methods=['POST'])
+    def calc(self):
+        data = request.json()
+        result = delivery_fee
 
+        return {"result": result}
 
-app.run()
+    @app.route('/', methods = ['GET', 'POST'])
+    def home(self):
+        if(request.method == 'GET'):
+            with open('app.json') as f:
+                d = json.load(f)
+            #data = request.json()
+            result = Calculations.calc()
+            return jsonify(
+                {'data': d},
+                {'result': result}
+            )
+
+    @app.route('/<int:num>', methods = ['GET'])
+    def disp(num):
+    
+        return jsonify({'data': num**2})
+
+    if __name__ == '__main__':
+    
+        app.run(debug = True)
