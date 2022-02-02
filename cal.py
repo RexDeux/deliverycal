@@ -4,9 +4,7 @@ import math
 from datetime import datetime, time
 import calendar
 import json
-from flask import Flask, json
-from flask import request
-from flask import jsonify
+from flask import Flask, json, render_template, request, jsonify
 
 t = time()
 
@@ -15,8 +13,7 @@ class Calculations:
     def calc(param):
         with open('app.json') as f:
             d = json.load(f)
-        for param in d:
-            print(param)
+            print(d)
             num_items = int(param['number_of_items'])
             delivery_distance = int(param['delivery_distance'])
             cart_value = int(param['cart_value'])
@@ -54,7 +51,7 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 
 
-@app.route('/calc', methods=['GET', 'POST'])
+@app.route('/cal', methods=['GET', 'POST'])
 def calc():
     param = request.json
     result = Calculations.calc(param)
