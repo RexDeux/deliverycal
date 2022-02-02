@@ -56,7 +56,7 @@ class Calculations():
     @app.route('/cal', methods=['POST'])
     def calc(self):
         data = request.json()
-        result = delivery_fee
+        #result = delivery_fee
 
         return {"result": result}
 
@@ -66,10 +66,10 @@ class Calculations():
             with open('app.json') as f:
                 d = json.load(f)
             #data = request.json()
-            result = Calculations.calc()
+            #result = Calculations.calc()
             return jsonify(
                 {'data': d},
-                {'result': result}
+                #{'result': result}
             )
 
     @app.route('/<int:num>', methods = ['GET'])
