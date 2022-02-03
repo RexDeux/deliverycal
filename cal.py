@@ -25,7 +25,7 @@ class Calculations():
         self.num_items = num_items
         self.time = time
         
-    #Dan = Calculations(790, 2235, 4, "2021-10-12T13:00:00Z", {self.delivery_fee})
+    #Dan = Calculations(790, 2235, 4, "2021-10-12T13:00:00Z", {delivery_fee})
     def surcharge(self):
         self.surcharge = 10 - self.cart_value if self.cart_value < 10 else 0
         return(self.surcharge)
@@ -34,11 +34,11 @@ class Calculations():
         self.delivery_distance_fee = math.ceil(
             self.delivery_distance / 500) if self.delivery_distance > 500 else 1
         surcharge = int( 0 if self.cart_value <= 4 else 0.50 * self.num_items)
-        self.delivery_fee = self.delivery_distance_fee + surcharge
-        if self.delivery_fee > 15:
-            self.delivery_fee = 15
+        delivery_fee = self.delivery_distance_fee + surcharge
+        if delivery_fee > 15:
+            delivery_fee = 15
         elif self.cart_value >= 100:
-            self.delivery_fee = 0
+            delivery_fee = 0
         return(self.surcharge + self.delivery_distance_fee)
         
     def happyhour(self):
@@ -51,12 +51,12 @@ class Calculations():
         current_time = now.strftime("%H:%M:%S")
             
         while (Friday_rush and current_time >= start):
-            self.delivery_fee = self.delivery_fee * 1.1
+            delivery_fee = delivery_fee * 1.1
         if current_time <= enda:
-            self.delivery_fee = self.delivery_fee
-        elif self.delivery_fee > 15:
-            self.delivery_fee = 15 
-        return(self.delivery_fee)
+            delivery_fee = delivery_fee
+        elif delivery_fee > 15:
+            delivery_fee = 15 
+        return(delivery_fee)
 
 demo1 = Calculations(790, 2235, 4, "2021-10-12T13:00:00Z")
 print(demo1.surcharge())
@@ -72,7 +72,7 @@ print(demo1.happyhour())
         #with open('app.json') as f:
             #d = json.load(f)
         #data = request.json()
-        #result = obj.self.delivery_fee
+        #result = obj.delivery_fee
         #return jsonify(
             #{'data': d},
             #{'delivery fee': "closer to victory"},
