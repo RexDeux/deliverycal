@@ -44,39 +44,40 @@ class Calculations():
                 delivery_fee = 15
             return delivery_fee
 
+obj = Calculations()
 
-    app = Flask(__name__)
-    app.config["DEBUG"] = True
+app = Flask(__name__)
+app.config["DEBUG"] = True
 
 
-    @app.route('/cal', methods=['GET'])
-    def get(self):
-        return jsonify({'message': print(d)})
+@app.route('/cal', methods=['GET'])
+def get(self):
+    return jsonify({'message': print(d)})
 
-    @app.route('/cal', methods=['POST'])
-    def calc(self):
-        data = request.json()
-        #result = delivery_fee
+@app.route('/cal', methods=['POST'])
+def calc(self):
+    data = request.json()
+    #result = delivery_fee
 
-        return {"result": result}
+    return {"result": result}
 
-    @app.route('/', methods = ['GET', 'POST'])
-    def home(self):
-        if(request.method == 'GET'):
-            with open('app.json') as f:
-                d = json.load(f)
-            #data = request.json()
-            #result = Calculations.calc()
-            return jsonify(
-                {'data': d},
-                #{'result': result}
-            )
+@app.route('/', methods = ['GET', 'POST'])
+def home():
+    if(request.method == 'GET'):
+        with open('app.json') as f:
+            d = json.load(f)
+        #data = request.json()
+        #result = Calculations.calc()
+        return jsonify(
+            {'data': d},
+            #{'result': result}
+        )
 
-    @app.route('/<int:num>', methods = ['GET'])
-    def disp(num):
+@app.route('/<int:num>', methods = ['GET'])
+def disp(num):
     
-        return jsonify({'data': num**2})
+    return jsonify({'data': num**2})
 
-    if __name__ == '__main__':
+if __name__ == '__main__':
     
-        app.run(debug = True)
+    app.run(debug = True)
