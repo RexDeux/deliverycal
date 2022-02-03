@@ -13,14 +13,15 @@ class Calculations():
     with open('app.json') as f:
             d = json.load(f)
             print(d)
-    #def __init__(self, cart_value,delivery_distance, num_items, time ,delivery_fee):
-    #self.cart_value = cart_value
-    #self.delivery_distance = delivery_distance
-    #self.num_items = num_items
-    #self.time = time
-    #self.delivery_fee = delivery_fee
+    def __init__(self, cart_value,delivery_distance, num_items, time ,delivery_fee):
+        self.cart_value = cart_value
+        self.delivery_distance = delivery_distance
+        self.num_items = num_items
+        self.time = time
+        self.delivery_fee = delivery_fee
+        
     #Dan = Calculations(790, 2235, 4, "2021-10-12T13:00:00Z", {delivery_fee})
-    def calc(delivery_fee, param):
+    def calc(self, param):
             num_items = int(param['number_of_items'])
             delivery_distance = int(param['delivery_distance'])
             cart_value = int(param['cart_value'])
@@ -52,7 +53,7 @@ class Calculations():
                 delivery_fee = 15
             return delivery_fee
 
-obj = Calculations()
+
 
 print("Math = ", Calculations.delivery_fee)
 app = Flask(__name__)
