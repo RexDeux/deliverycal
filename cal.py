@@ -1,6 +1,7 @@
 import math
 from datetime import datetime, time
-import calendar
+import datetime as DT
+import dateutil.relativedelta as REL
 import json
 from flask import Flask, json, render_template, jsonify, request
 from numpy import integer
@@ -37,12 +38,20 @@ class Calculations():
         return(a)
         
     def friday_rush(self):
-        # calculations
-        #surcharge = 10 - self.cart_value if self.cart_value < 10 else 0
-        Friday_rush = calendar.FRIDAY
-        start = '15:00:00'
-        end = '19:00:00'
-        now = datetime.now()
+        today = DT.date.today()
+        now = DT.datetime.now()
+        rd = REL.relativedelta(days=1, weekday=REL.FR)
+        next_friday = today + rd
+        start = DT.datetime.combine(DT.date.today(), DT.time(hour=15))
+        end = DT.datetime.combine(DT.date.today(), DT.time(hour=19))
+        delivery_fee = (Calculations.delivery_distance_fee(self) + Calculations.surcharge(self))
+        while next_friday:
+            if start < now:
+                delivery_fee * 1.1
+            elif now > end:
+                delivery_fee * 1
+        return(delivery_fee)
+
         #current_time = now.strftime("%H:%M:%S")
         #c = if calendar.FRIDAY + start > end
             #delivery_fee = self.delivery_distance_fee + self.surcharge 
@@ -61,10 +70,11 @@ class Calculations():
             #delivery_fee = 15 
         #return(delivery_fee)
 
-demo1 = Calculations(790, 2235, 4, "2021-10-12T13:00:00Z")
+demo1 = Calculations(790, 2235, 4, "2022-02-04T16:00:00Z")
 print(demo1.surcharge())
 print(demo1.delivery_distance_fee())
-#print(demo1.happyhour())
+print(demo1.friday_rush())
+print('Your delivery fee is', demo1.friday_rush())
 
 #app = Flask(__name__)
 #app.config["DEBUG"] = True
