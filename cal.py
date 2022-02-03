@@ -33,12 +33,7 @@ class Calculations():
     def delivery_distance_fee(self):
         self.delivery_distance_fee = math.ceil(
             self.delivery_distance / 500) if self.delivery_distance > 500 else 1
-        surcharge = int( 0 if self.cart_value <= 4 else 0.50 * self.num_items)
-        delivery_fee = self.delivery_distance_fee + surcharge
-        if delivery_fee > 15:
-            delivery_fee = 15
-        elif self.cart_value >= 100:
-            delivery_fee = 0
+        self.surcharge = int( 0 if self.cart_value <= 4 else 0.50 * self.num_items)
         return(self.surcharge + self.delivery_distance_fee)
         
     def happyhour(self):
@@ -49,9 +44,16 @@ class Calculations():
         enda = '19:00:00'
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
+        if not happyhour : 
+            delivery_fee = self.delivery_distance_fee + surcharge 
+            elif delivery_fee > 15:
+                delivery_fee = 15
+            elif self.cart_value >= 100:
+                delivery_fee = 0
+        return(self.surcharge + self.delivery_distance_fee)
             
         while (Friday_rush and current_time >= start):
-            delivery_fee = delivery_fee * 1.1
+            delivery_fee * 1.1
         if current_time <= enda:
             delivery_fee = delivery_fee
         elif delivery_fee > 15:
