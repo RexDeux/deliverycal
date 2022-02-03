@@ -26,7 +26,6 @@ class Calculations():
         self.num_items = num_items
         self.time = time
         
-    #Dan = Calculations(790, 2235, 4, "2021-10-12T13:00:00Z", {delivery_fee})
     def surcharge(self):
         b = (10 - self.cart_value if self.cart_value < 10 else 0)
         return(b)
@@ -38,6 +37,8 @@ class Calculations():
         return(a)
         
     def friday_rush(self):
+        #today = DT.date.today()
+        #now = DT.datetime.now()
         today = DT.date.today()
         now = DT.datetime.now()
         rd = REL.relativedelta(days=1, weekday=REL.FR)
@@ -52,28 +53,10 @@ class Calculations():
                 delivery_fee * 1
         return(delivery_fee)
 
-        #current_time = now.strftime("%H:%M:%S")
-        #c = if calendar.FRIDAY + start > end
-            #delivery_fee = self.delivery_distance_fee + self.surcharge 
-            #elif delivery_fee > 15:
-                #delivery_fee = 15
-            #else self.cart_value >= 100:
-                #delivery_fee = 0
-        #return Friday_rush
-        #return(self.surcharge + self.delivery_distance_fee)
-            
-        #while (Friday_rush and current_time >= start):
-            #delivery_fee * 1.1
-        #if current_time <= enda:
-            #delivery_fee = delivery_fee
-        #elif delivery_fee > 15:
-            #delivery_fee = 15 
-        #return(delivery_fee)
-
 demo1 = Calculations(790, 2235, 4, "2022-02-04T16:00:00Z")
-print(demo1.surcharge())
-print(demo1.delivery_distance_fee())
-print(demo1.friday_rush())
+print('Your surcharge is:',demo1.surcharge(),'euros')
+print('Your delivery distance fee is:',demo1.delivery_distance_fee(),'euros')
+#print('Your total fee is:',demo1.surcharge() + demo1.delivery_distance_fee())
 print('Your delivery fee is', demo1.friday_rush())
 
 #app = Flask(__name__)
