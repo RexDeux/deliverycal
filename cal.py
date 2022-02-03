@@ -7,10 +7,6 @@ from flask import Flask, json, render_template, jsonify, request
 from numpy import integer
 
 #from flask_restful import Resource
-
-t = time()
-
-
 class Calculations():
     with open('app.json') as f:
             d = json.load(f)
@@ -18,13 +14,13 @@ class Calculations():
             num_items = ['number_of_items']
             delivery_distance = ['delivery_distance']
             cart_value = ['cart_value']
-            t = ['time']
+            time = ['time']
 
     def __init__(self, cart_value,delivery_distance, num_items, time):
         self.cart_value = cart_value
         self.delivery_distance = delivery_distance
         self.num_items = num_items
-        self.time = time
+        self.time = datetime.strptime(time, '%b %d %Y %I:%M%p')
         
     def surcharge(self):
         b = (10 - self.cart_value if self.cart_value < 10 else 0)
@@ -47,9 +43,9 @@ class Calculations():
         end = DT.datetime.combine(DT.date.today(), DT.time(hour=19))
         delivery_fee = (Calculations.delivery_distance_fee(self) + Calculations.surcharge(self))
         while next_friday:
-            if start < now:
+            if self.time < "T15:00:00Z":
                 delivery_fee * 1.1
-            elif now > end:
+            elif self.time > "T19:00:00Z":
                 delivery_fee * 1
         return(delivery_fee)
 
