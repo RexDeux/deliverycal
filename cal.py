@@ -10,19 +10,27 @@ t = time()
 
 
 class Calculations():
-    def calc(param):
-        with open('app.json') as f:
+    with open('app.json') as f:
             d = json.load(f)
             print(d)
+    #def __init__(self, cart_value,delivery_distance, num_items, time ,delivery_fee):
+    #self.cart_value = cart_value
+    #self.delivery_distance = delivery_distance
+    #self.num_items = num_items
+    #self.time = time
+    #self.delivery_fee = delivery_fee
+    #Dan = Calculations(790, 2235, 4, "2021-10-12T13:00:00Z", {delivery_fee})
+    def __init__(self, delivery_fee, param):
             num_items = int(param['number_of_items'])
             delivery_distance = int(param['delivery_distance'])
             cart_value = int(param['cart_value'])
-            time = param['time']
+            ti = param['time']
             Friday_rush = calendar.FRIDAY
             start = '15:00:00'
             enda = '19:00:00'
             now = datetime.now()
             current_time = now.strftime("%H:%M:%S")
+            #delivery_fee = 0
             # calculations
             surcharge = 10 - cart_value if cart_value < 10 else 0
             base_fee = 2
@@ -46,6 +54,7 @@ class Calculations():
 
 obj = Calculations()
 
+print("Math = ", Calculations.delivery_fee)
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
@@ -67,7 +76,7 @@ def home():
         with open('app.json') as f:
             d = json.load(f)
         #data = request.json()
-        #result = Calculations.calc()
+        #result = obj.delivery_fee
         return jsonify(
             {'data': d},
             #{'result': result}
