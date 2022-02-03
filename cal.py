@@ -27,43 +27,44 @@ class Calculations():
         
     #Dan = Calculations(790, 2235, 4, "2021-10-12T13:00:00Z", {delivery_fee})
     def surcharge(self):
-        self.surcharge = 10 - self.cart_value if self.cart_value < 10 else 0
-        return(self.surcharge)
+        b = (10 - self.cart_value if self.cart_value < 10 else 0)
+        return(b)
     
     def delivery_distance_fee(self):
-        self.delivery_distance_fee = math.ceil(
+        a = self.delivery_distance_fee = math.ceil(
             self.delivery_distance / 500) if self.delivery_distance > 500 else 1
         self.surcharge = int( 0 if self.cart_value <= 4 else 0.50 * self.num_items)
-        return(self.surcharge + self.delivery_distance_fee)
+        return(a)
         
-    def happyhour(self):
+    def friday_rush(self):
         # calculations
         #surcharge = 10 - self.cart_value if self.cart_value < 10 else 0
         Friday_rush = calendar.FRIDAY
         start = '15:00:00'
-        enda = '19:00:00'
+        end = '19:00:00'
         now = datetime.now()
-        current_time = now.strftime("%H:%M:%S")
-        if not happyhour : 
-            delivery_fee = self.delivery_distance_fee + surcharge 
-            elif delivery_fee > 15:
-                delivery_fee = 15
-            elif self.cart_value >= 100:
-                delivery_fee = 0
-        return(self.surcharge + self.delivery_distance_fee)
+        #current_time = now.strftime("%H:%M:%S")
+        #c = if calendar.FRIDAY + start > end
+            #delivery_fee = self.delivery_distance_fee + self.surcharge 
+            #elif delivery_fee > 15:
+                #delivery_fee = 15
+            #else self.cart_value >= 100:
+                #delivery_fee = 0
+        #return Friday_rush
+        #return(self.surcharge + self.delivery_distance_fee)
             
-        while (Friday_rush and current_time >= start):
-            delivery_fee * 1.1
-        if current_time <= enda:
-            delivery_fee = delivery_fee
-        elif delivery_fee > 15:
-            delivery_fee = 15 
-        return(delivery_fee)
+        #while (Friday_rush and current_time >= start):
+            #delivery_fee * 1.1
+        #if current_time <= enda:
+            #delivery_fee = delivery_fee
+        #elif delivery_fee > 15:
+            #delivery_fee = 15 
+        #return(delivery_fee)
 
 demo1 = Calculations(790, 2235, 4, "2021-10-12T13:00:00Z")
 print(demo1.surcharge())
 print(demo1.delivery_distance_fee())
-print(demo1.happyhour())
+#print(demo1.happyhour())
 
 #app = Flask(__name__)
 #app.config["DEBUG"] = True
