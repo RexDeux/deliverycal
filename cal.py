@@ -20,7 +20,7 @@ class Calculations():
     #self.time = time
     #self.delivery_fee = delivery_fee
     #Dan = Calculations(790, 2235, 4, "2021-10-12T13:00:00Z", {delivery_fee})
-    def __init__(self, delivery_fee, param):
+    def calc(delivery_fee, param):
             num_items = int(param['number_of_items'])
             delivery_distance = int(param['delivery_distance'])
             cart_value = int(param['cart_value'])
