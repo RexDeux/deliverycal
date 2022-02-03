@@ -58,18 +58,6 @@ class Calculations:
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
-
-@app.route('/cal', methods=['GET'])
-def get(self):
-    return jsonify({'message': print(d)})
-
-@app.route('/cal', methods=['POST'])
-def calc(self):
-    data = request.json()
-    #result = delivery_fee
-
-    return {"result": result}
-
 @app.route('/', methods = ['GET', 'POST'])
 def home():
     if(request.method == 'GET'):
