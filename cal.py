@@ -10,7 +10,7 @@ from numpy import integer
 t = time()
 
 
-class Calculations:
+class Calculations():
     with open('app.json') as f:
             d = json.load(f)
             print(d)
@@ -19,12 +19,11 @@ class Calculations:
             cart_value = ['cart_value']
             t = ['time']
 
-    def __init__(self, cart_value=None,delivery_distance=None, num_items=None, time=None ,delivery_fee=None):
+    def __init__(self, cart_value,delivery_distance, num_items, time):
         self.cart_value = cart_value
         self.delivery_distance = delivery_distance
         self.num_items = num_items
         self.time = time
-        self.delivery_fee = delivery_fee
         
     #Dan = Calculations(790, 2235, 4, "2021-10-12T13:00:00Z", {self.delivery_fee})
     def surcharge(self):
@@ -59,10 +58,11 @@ class Calculations:
             self.delivery_fee = 15 
         return(self.delivery_fee)
 
-demo1 = Calculations(790, 2235, 4, "2021-10-12T13:00:00Z",)
+demo1 = Calculations(790, 2235, 4, "2021-10-12T13:00:00Z")
 print(demo1.surcharge())
 print(demo1.delivery_distance_fee())
 print(demo1.happyhour())
+
 #app = Flask(__name__)
 #app.config["DEBUG"] = True
 
