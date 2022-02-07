@@ -58,7 +58,7 @@ def home():
         demo1 = Calculations(790, 2235, 4, "2022-02-04T16:00:00Z")
         return jsonify(
             {'data': d},
-            {'delivery fee': "closer to victory"},
+            {'Your delivery fee is': demo1.friday_rush()},
             {'Your surcharge is': demo1.surcharge()},
             {'Your delivery distance fee is': demo1.delivery_distance_fee()}
         )
