@@ -58,7 +58,7 @@ def home():
         demo1 = Calculations(790, 2235, 4, "2022-02-04T16:00:00Z")
         return jsonify(
             {'data': d},
-            {'Your delivery fee is': demo1.friday_rush()},
+            #{'Your delivery fee is': demo1.surcharge ,+ demo1.delivery_distance_fee. },
             {'Your surcharge is': demo1.surcharge()},
             {'Your delivery distance fee is': demo1.delivery_distance_fee()}
         )
@@ -73,8 +73,3 @@ if __name__ == '__main__':
     
     app.run(debug = True)
     app.run()
-
-#print('Your surcharge is:',demo1.surcharge(),'euros')
-#print('Your delivery distance fee is:',demo1.delivery_distance_fee(),'euros')
-#print('Your total fee is:',demo1.surcharge() + demo1.delivery_distance_fee())
-#print('Your delivery fee is', demo1.friday_rush())
