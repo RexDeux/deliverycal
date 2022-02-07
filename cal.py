@@ -11,13 +11,11 @@ import time
 class Calculations():
     with open('app.json') as f:
             d = json.load(f)
-            #print(d)
             num_items = ['number_of_items']
             delivery_distance = ['delivery_distance']
             cart_value = ['cart_value']
             time = ['time']
             date_string = str(time)
-            #print (datetime.fromisoformat(date_string))
 
     def __init__(self, cart_value,delivery_distance, num_items, time):
         self.cart_value = cart_value
@@ -36,8 +34,6 @@ class Calculations():
         return(a)
         
     def friday_rush(self):
-        #today = DT.date.today()
-        #now = DT.datetime.now()
         today = DT.date.today()
         now = DT.datetime.now()
         rd = REL.relativedelta(days=1, weekday=REL.FR)
@@ -78,7 +74,7 @@ if __name__ == '__main__':
     app.run(debug = True)
     app.run()
 
-print('Your surcharge is:',demo1.surcharge(),'euros')
-print('Your delivery distance fee is:',demo1.delivery_distance_fee(),'euros')
+#print('Your surcharge is:',demo1.surcharge(),'euros')
+#print('Your delivery distance fee is:',demo1.delivery_distance_fee(),'euros')
 #print('Your total fee is:',demo1.surcharge() + demo1.delivery_distance_fee())
-print('Your delivery fee is', demo1.friday_rush())
+#print('Your delivery fee is', demo1.friday_rush())
