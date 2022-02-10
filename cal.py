@@ -22,15 +22,16 @@ class Calculations:
         self.delivery_distance = delivery_distance
         self.num_items = num_items
         self.time = time
-        
     def surcharge(self):
         b = (10 - self.cart_value if self.cart_value < 10 else 0)
+        print('Your surcharge is worth', self.surcharge)
         return(b)
     
     def delivery_distance_fee(self):
         a = self.delivery_distance_fee = math.ceil(
             self.delivery_distance / 500) if self.delivery_distance > 500 else 1
         self.surcharge = int( 0 if self.cart_value <= 4 else 0.50 * self.num_items)
+        print('Your delivery distance fee is worth', self.delivery_distance_fee)
         return(a)
         
     def friday_rush(self):
@@ -47,6 +48,7 @@ class Calculations:
             elif self.time > "T19:00:00Z":
                 delivery_fee * 1
         return(delivery_fee)
+        
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
