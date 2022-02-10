@@ -8,7 +8,7 @@ from numpy import integer
 import time
 
 
-class Calculations():
+class Calculations:
     with open('app.json') as f:
             d = json.load(f)
             num_items = ['number_of_items']
@@ -58,9 +58,9 @@ def home():
         demo1 = Calculations(790, 2235, 4, "2022-02-04T16:00:00Z")
         return jsonify(
             {'data': d},
-            #{'Your delivery fee is': demo1.surcharge ,+ demo1.delivery_distance_fee. },
-            {'Your surcharge is': demo1.surcharge()},
-            {'Your delivery distance fee is': demo1.delivery_distance_fee()}
+            {'Your delivery fee is': demo1.surcharge() + demo1.delivery_distance_fee()},
+            #{'Your surcharge is': demo1.surcharge()},
+            #{'Your delivery distance fee is': demo1.delivery_distance_fee()}
         )
         
 
